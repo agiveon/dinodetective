@@ -25,4 +25,4 @@ sample_images = [['examples/ex1_ankylosaurus.JPG'],['examples/ex1_spinosaurus.JP
 title = 'Dino Detective!'
 description = 'Upload a picture of a dinosaur (or choose one from the samples below) and learn which one it is. Currently classifying only (Ankylosaurus, Spinosaurus, Stegosaurus, T-Rex, Triceratops). For best results, place the toy on a flat surface and take a picture of it against a flat background.'
 
-gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True,examples=sample_images, title=title, description=description).launch(debug=True)
+gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True,examples=sample_images, title=title, description=description).launch(share=True)
