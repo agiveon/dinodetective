@@ -20,8 +20,8 @@ def classify_dino(inp):
 
 image = gr.inputs.Image(shape=(IMG_WIDTH, IMG_HEIGHT))
 label = gr.outputs.Label(num_top_classes=3)
-sample_images = [["ex1_ankylosaurus.JPG"],['ex1_spinosaurus.JPG'],['ex1_stegasaurus.JPG']
-                 ,['ex1_trex.JPG'],['ex1_triceratops.JPG']]
+sample_images = [['examples/ex1_ankylosaurus.JPG'],['examples/ex1_spinosaurus.JPG'],['examples/ex1_stegasaurus.JPG']
+                 ,['examples/ex1_trex.JPG'],['examples/ex1_triceratops.JPG']]
 title = 'Dino Detective!'
 description = 'Upload a picture of a dinosaur (or choose one from the samples below) and learn which one it is. Currently classifying only (Ankylosaurus, Spinosaurus, Stegosaurus, T-Rex, Triceratops). For best results, place the toy on a flat surface and take a picture of it'
 
