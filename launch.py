@@ -7,7 +7,7 @@ model = keras.models.load_model('DinoSnapModel.h5')
 
 labels = list(['Ankylosaurus', 'Brachiosaurus', 'Parasaurolophus',
        'Spinosaurus', 'Stegosaurus', 'T-Rex',
-       'Triceratops', 'Velociraptor'])
+       'Triceratops', 'Velociraptor', 'No Dino Found'])
 
 IMG_WIDTH = 80
 IMG_HEIGHT = 80
