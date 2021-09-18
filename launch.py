@@ -28,4 +28,4 @@ title = 'Dino Detective!'
 
 description = 'Snap a picture of a dinosaur (or choose one from the samples below) and find out which one it is. Currently classifying only 10 types of dinosaurs (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor). For best results, place the toy on a flat surface and take a picture of it against a flat background. Feedback? Questions? Email me to dinodetect@gmail.com'
 
-gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True,examples=sample_images, title=title, description=description).launch(debug=True)
+gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True,examples=sample_images, title=title, description=description).launch(debug=False)
