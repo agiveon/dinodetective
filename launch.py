@@ -22,8 +22,8 @@ def classify_dino(inp):
 
 image = gr.inputs.Image(type='pil',image_mode="RGB")
 label = gr.outputs.Label(num_top_classes=3)
-sample_images = [['examples/ex1_ankylosaurus.JPG'],['examples/ex1_spinosaurus.JPG'],['examples/ex1_stegasaurus.JPG']
-                 ,['examples/ex1_trex.JPG'],['examples/ex1_triceratops.JPG']]
+sample_images = [['ex1_ankylosaurus.JPG'],['ex1_spinosaurus.JPG'],['ex1_stegasaurus.JPG']
+                 ,['ex1_trex.JPG'],['ex1_triceratops.JPG']]
 title = 'Dino Detective!'
 
 description = 'Snap a picture of a dinosaur (or choose one from the samples below) and find out which one it is. Currently classifying 10 types of dinosaurs (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor). For best results, place the toy on a flat surface and take a picture of it against a uniform background. Feedback? Questions? Email me to dinodetect@gmail.com'
