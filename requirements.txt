@@ -5,3 +5,4 @@ gradio
 tensorflow
 torch
 torchvision
+requests
