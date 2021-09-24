@@ -22,7 +22,7 @@ def classify_dino(img):
 image = gr.inputs.Image(type='pil',image_mode="RGB")
 label = gr.outputs.Label()
 title = 'Dino Detective!'
-description = 'Upload a picture of a dinosaur (or choose one from the samples below) and learn which one it is. \n Currently classifying only (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor)'
+description = 'Snap a picture of a dinosaur toy against a uniform background (or choose one from the samples below) and find out which dinosaur it is. Currently classifying 10 types of dinosaurs (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor). For best results, place the toy on a flat surface and take a picture against a uniform background. Feedback? Questions? Email me to dinodetect@gmail.com'
 sample_images = [["ex1_ankylosaurus.JPG"],['ex1_spinosaurus.JPG'],['ex1_stegasaurus.JPG'],['ex1_trex.JPG'],['ex1_triceratops.JPG']]
 
 gr.Interface(fn=classify_dino, inputs=image, outputs=label,examples=sample_images, capture_session=True, title=title, description=description).launch(debug=True)
