@@ -1,31 +1,27 @@
 import gradio as gr
-import numpy as np
-import cv2
-from tensorflow import keras
+import torch
+from torchvision import transforms
+import requests
+from PIL import Image
 
-model = keras.models.load_model('DinoSnapModel.h5')
+model = torch.load('DinoTransModel.pt')
+model.eval()
 
-labels = list(['Ankylosaurus', 'Brachiosaurus', 'Paceacephalasaurus',
-       'Parasaurolophus', 'Pterodactyl', 'Spinosaurus',
-       'Stegosaurus', 'T-Rex', 'Triceratops',
-       'Velociraptor', 'No Dino Found (please try again)'])
+labels = ['Ankylosaurus', 'Brachiosaurus', 'Paceacephalasaurus', 'Parasaurolophus', 'Pterodactyl', 'Spinosaurus', 'Stegosaurus', 'T-Rex', 'Triceratops', 'Velociraptor']
 
-IMG_SIZE = 224
+def classify_dino(img):
 
-def classify_dino(inp):
+  img = transforms.Resize((224,224))(img)
+  img = transforms.ToTensor()(img)
+  img = transforms.Normalize([0.485, 0.456, 0.406],[0.229, 0.224, 0.225])(img)
 
-  img_resize = inp.resize((IMG_SIZE,IMG_SIZE))
-  img_np = np.array(img_resize).astype(np.float32)/255.
-  np.save('img_np_gradio',img_np)
-  prediction = model.predict(img_np.reshape(1,IMG_SIZE,IMG_SIZE,3))
-  return {labels[i]: float(prediction[0,i]) for i in range(len(labels))}
+  with torch.no_grad():
+    new_pred = model(img.view(1,3,224,224)).argmax()
+  return labels[new_pred.item()]
 
 image = gr.inputs.Image(type='pil',image_mode="RGB")
-label = gr.outputs.Label(num_top_classes=3)
-sample_images = [['ex1_ankylosaurus.JPG'],['ex1_spinosaurus.JPG'],['ex1_stegasaurus.JPG']
-                 ,['ex1_trex.JPG'],['ex1_triceratops.JPG']]
+label = gr.outputs.Label()
 title = 'Dino Detective!'
+description = 'Upload a picture of a dinosaur (or choose one from the samples below) and learn which one it is. \n Currently classifying only (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor)'
 
-description = 'Snap a picture of a dinosaur toy against a uniform background (or choose one from the samples below) and find out which dinosaur it is. Currently classifying 10 types of dinosaurs (Ankylosaurus, Brachiosaurus, Paceacephalasaurus, Parasaurolophus, Pterodactyl, Spinosaurus, Stegosaurus, T-Rex, Triceratops, Velociraptor). For best results, place the toy on a flat surface and take a picture against a uniform background. Feedback? Questions? Email me to dinodetect@gmail.com'
-
-gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True,examples=sample_images, title=title, description=description).launch(debug=False)
+gr.Interface(fn=classify_dino, inputs=image, outputs=label, capture_session=True, title=title, description=description).launch(debug=True)
