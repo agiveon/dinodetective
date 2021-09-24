@@ -3,3 +3,5 @@ opencv-python
 keras
 gradio
 tensorflow
+torch
+torchvision
